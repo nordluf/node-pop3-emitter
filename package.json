@@ -3,10 +3,41 @@
   "name": "pop3-emitter",
   "version": "1.0.0",
   "description": "zero-dependency evented POP3 server object",
-  "keywords": ["POP3", "pop3", "pop3 server", "email"],
+  "keywords": [
+    "POP3",
+    "pop3",
+    "pop3 server",
+    "email"
+  ],
   "homepage": "https://github.com/femto113/node-pop3-emitter#readme",
   "license": "MIT",
- "repository": "github:femto113/node-pop3-emitter",
+  "repository": "github:femto113/node-pop3-emitter",
   "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "lint": "semistandard"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e",
+      "pre-commit": "npm run lint"
+    }
+  },
+  "engines": {
+    "node": ">= 18.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "husky": "^4.0.0",
+    "semistandard": "^16.0.1"
+  },
+  "files": [
+    "index.js"
+  ]
 }

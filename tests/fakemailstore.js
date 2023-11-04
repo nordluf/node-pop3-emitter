@@ -1,3 +1,4 @@
+/* eslint-disable */
 const fs = require('fs'),
     util = require('util'),
   crypto = require('crypto');
@@ -30,7 +31,7 @@ FakeMailStore.prototype.make_message = function (index, from, to, subject, body)
     headers: [
       "Date: " + d.toString(),
       "From: " + from,
-      "To: " + to, 
+      "To: " + to,
       "Subject: " + subject
     ],
     body: body

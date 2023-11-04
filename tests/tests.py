@@ -11,7 +11,7 @@ import json
 import random
 import re
 
-PORT = 110
+PORT = 1111
 
 # TODO:
 # tests for remaining commands supported by poplib
@@ -76,7 +76,7 @@ class PreAuthTests(POP3TestCase):
         response = self.pop3.capa()
         # no capabilities are guaranteed, so not much of an assertion to be made here
         self.assertTrue(isinstance(response, dict))
-        
+
     @unittest.skipUnless(sys.version_info >= (3,4), "stls() added in 3.4")
     def testStls(self):
         response = self.pop3.stls()
@@ -222,7 +222,7 @@ class DeleteTests(POP3TestCase):
         # close without quiting (close() method added in 3.X)
         if callable(getattr(self.pop3, 'close', None)):
             self.pop3.close()
-        else: 
+        else:
             # mimics quit() from 2.X poplib.py
             self.pop3.file.close()
             self.pop3.sock.close()

@@ -3,7 +3,7 @@
 ## Motivation
 
 This repository is a companion to [node-smtp-receiver](//github.com/femto113/node-smtp-receiver),
-and shares a similar design.  Together they provide a the ability to implement a
+and shares a similar design.  Together they provide an ability to implement a
 simple mail server capable of receiving messages from other servers via SMTP and
 retrieving those message via POP3.
 
@@ -61,7 +61,7 @@ will be a no op, which allows a listener like the following to work in both case
 
 Note that while `APOP` may feel more secure (since the password isn't transmitted
 in plaintext) it does require that the server *knows* the plaintext of the password
-so it can feed it to the hashfunc, which is definitely a security anti-pattern.
+so, it can feed it to the hashfunc, which is definitely a security anti-pattern.
 With `PASS` the server can store a hash of the password (e.g. using bcrypt) and
 apply that same hash to the given plaintext.  To prevent eavesdropping `PASS`
 should probably only be used on a secure port or after an `STLS` command.
@@ -128,7 +128,7 @@ as well as a listener for the `connected` event (see below).
 ### Option: apop
 
 This option controls whether the server advertises support for the `APOP` command by
-including a salt in in the hello message.  Possible values are:
+including a salt in the hello message.  Possible values are:
 
 - false:    no APOP support (any falsy value including null works as well)
 - true:     (this is the default) generate a per-connection salt using `crypto.randomBytes`
