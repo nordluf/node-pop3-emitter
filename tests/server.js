@@ -57,13 +57,13 @@ server.on('uidl', function(user, which, callback) {
   });
 });
 
-server.on('authenticate', function (user, password, method, hashfunc, callback) {
+server.on('authenticate', function (user, password, method, hashfunc, remoteAddress, callback) {
   mailstore.get_mailbox(user, function (err, mailbox) {
     if (err) return callback(false);
     hashed = hashfunc(mailbox.password)
     ok = hashed === password;
     if (!ok)
-      console.log("%j(%j) => %j !== %j", method, mailbox.password, hashed, password);
+      console.log("%j(%j) => %j !== %j", method, mailbox.password, hashed, password, remoteAddress);
     return callback(ok);
   });
 });

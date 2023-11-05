@@ -137,8 +137,8 @@ POP3Server.prototype.capabilities = function (state, callback) {
   }
 };
 
-POP3Server.prototype.authenticate = function (user, password, method, hashfunc, callback) {
-  if (!this.emit('authenticate', user, password, method, hashfunc, callback)) {
+POP3Server.prototype.authenticate = function (user, password, method, hashfunc, remoteAddr, callback) {
+  if (!this.emit('authenticate', user, password, method, hashfunc, remoteAddr, callback)) {
     this.emit('error', method + ' command received but no authenticate listeners found');
     return callback(false);
   }
@@ -366,7 +366,7 @@ POP3Connection.prototype.commands = {
     }
     const password = args.shift();
     // TODO: assert password
-    this.server.authenticate(this.user, password, 'PASS', this.noop_hash, function (ok, message) {
+    this.server.authenticate(this.user, password, 'PASS', this.noop_hash, this.socket.remoteAddress, function (ok, message) {
       if (ok) {
         this.state = 'TRANSACTION';
         return this.respondOk();
@@ -381,7 +381,7 @@ POP3Connection.prototype.commands = {
     }
     this.user = args.shift();
     const password = args.shift();
-    this.server.authenticate(this.user, password, 'APOP', this.apop_hash, function (ok, message) {
+    this.server.authenticate(this.user, password, 'APOP', this.apop_hash, this.socket.remoteAddress, function (ok, message) {
       if (ok) {
         this.state = 'TRANSACTION';
         return this.respondOk();
