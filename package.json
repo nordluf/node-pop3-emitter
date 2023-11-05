@@ -14,7 +14,9 @@
   "repository": "github:femto113/node-pop3-emitter",
   "dependencies": {},
   "scripts": {
-    "lint": "semistandard"
+    "lint": "semistandard",
+    "pre-commit": "npm audit && npm run lint && npm test",
+    "test": "echo 'No tests :('"
   },
   "commitlint": {
     "extends": [
@@ -24,7 +26,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e",
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run pre-commit"
     }
   },
   "engines": {
