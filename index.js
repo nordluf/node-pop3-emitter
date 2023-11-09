@@ -258,7 +258,10 @@ POP3Connection.prototype.setSocket = function (socket) {
     }
     const tokens = parse_command(data);
     // TODO: if tokens is null that means we haven't gotten an EOL yet and should keep buffering
-    const cmd = tokens.shift().toUpperCase();
+    const cmd = tokens?.shift?.()?.toUpperCase();
+    if (!cmd) {
+      return this.respondErr('unknown/unsupported command');
+    }
     if (!this.listenerCount(cmd)) {
       return this.respondErr('unknown/unsupported command ' + cmd);
     }
